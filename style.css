@@ -8,7 +8,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 0.7rem;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -29,7 +29,7 @@ body {
 }
 
 .side_menu {
-    width: 23vw;
+    width: 25vw;
     height: 100vh;
 }
 
@@ -69,6 +69,7 @@ body {
 }
 
 .songs ul {
+    /* overflow-x: hidden; */
     overflow-y: hidden;
     margin: 15px 0;
     height: 25rem;
@@ -77,15 +78,39 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 10px;
+    padding: 7px 10px;
+    /* font-size: 14px; */
+}
+.songs ul li {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 13px;
+    padding: 4px 10px;
+    border: 1px solid var(--bg_color);
+    border-radius: 7px;
+}
+.songs ul li:hover{
+    cursor: pointer;
+    background-color: var(--bg_color);
+
 }
 
 .songs ul:hover {
     overflow-y: auto;
 }
-
-.side2 ul li {
-    list-style-type: none;
+.songInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+}
+.songInfo div:first-child{
+    font-size: 16px;
+}
+.songInfo div:last-child{
+    font-size: 13px;
 }
 
 .side2 img {
@@ -129,7 +154,7 @@ main {
     border-radius: 10px;
     background-color: var(--bg_color);
     height: 98.6vh;
-    width: 77vw;
+    width: 75vw;
 }
 
 nav {
@@ -139,7 +164,8 @@ nav {
     margin: auto;
     justify-content: space-between;
 }
-.fa-bars{
+
+.fa-bars {
     font-size: 0px;
 }
 
@@ -198,12 +224,15 @@ nav {
 }
 
 .playlist_box img {
-    max-width: 100%;
-    height: auto
+    padding: 7px 0;
+    max-width: 176px;
+    margin: auto;
+    display: flex;
+    border-radius: 15px;
 }
 
 .playlist_box {
-    width: 200px;
+    width: 188px;
 }
 
 .playlists h5 {
@@ -287,18 +316,22 @@ nav {
 
 .tracker_path {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     height: 2px;
     width: 80%;
     background-color: white;
     cursor: pointer;
 }
-.tracker_ball{
+
+.tracker_ball {
+    position: relative;
+    left: 0%;
     height: 10px;
     width: 10px;
     background-color: white;
     border-radius: 50%;
+    transition: left 0.5s;
 }
 
 .controls {
@@ -306,7 +339,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: paleturquoise; */
 }
 
 .controls span {
@@ -317,7 +349,7 @@ nav {
 }
 
 .controls input[type="range"] {
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     background-color: var(--volume_track_color);
     height: 5px;
     border-radius: 30px;
@@ -333,84 +365,101 @@ nav {
 }
 
 @media screen and (max-width: 985px) {
-    .playlist_folders{
+    .playlist_folders {
         justify-content: space-evenly;
     }
+
     .side_menu {
         position: absolute;
         left: -100%;
     }
-    .fa-bars{
+
+    .fa-bars {
         position: absolute;
         left: 2rem;
         font-size: 20px;
     }
-    .nav_buttons{
+
+    .nav_buttons {
         visibility: hidden;
     }
+
     main {
         min-width: 100%;
     }
+
     .controls {
         transform: scale(0.8);
     }
-    .play_bar{
+
+    .play_bar {
         transform: scale(0.8);
     }
-    .song_info{
+
+    .song_info {
         transform: scale(0.8);
     }
 }
 
 @media screen and (max-width: 760px) {
-    .tracker{
+    .tracker {
         display: flex;
         justify-content: center;
     }
+
     .controls {
         transform: rotate(-90deg);
         scale: 0.6;
         width: 15%;
     }
-    .controls .fa-solid{
+
+    .controls .fa-solid {
         transform: rotate(90deg);
     }
-    .play_bar{
+
+    .play_bar {
         width: 60%;
         transform: scale(0.8);
     }
-    .song_info{
+
+    .song_info {
         width: 25%;
         transform: scale(0.8);
     }
 }
+
 @media screen and (max-width: 760px) {
-    .song_info{
+    .song_info {
         width: 33%;
     }
+
     .buttons {
         font-size: 20px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .play_bar{
+    .play_bar {
         transform: scale(0.7);
     }
-    .song_info{
+
+    .song_info {
         width: 35%;
         transform: scale(0.7);
     }
+
     .buttons {
         font-size: 18px;
         gap: 20px;
     }
 }
+
 @media screen and (max-width: 570px) {
-    .song_info{
+    .song_info {
         width: 40%;
     }
 }
+
 @media screen and (max-width: 495px) {
     .playlist_box {
         width: 300px;
@@ -423,6 +472,7 @@ nav {
         gap: 15px;
     }
 }
+
 @media screen and (max-height: 684px) {
     .controls {
         scale: 0.5;
