@@ -20,6 +20,7 @@
     --bg_color: #333333;
     --inside_color: rgb(32, 32, 32);
     --volume_track_color: rgb(104, 104, 104);
+    --spotify_green: #1ed760;
 }
 
 body {
@@ -55,6 +56,20 @@ body {
     height: 38px;
     margin-bottom: 15px;
 }
+.side1 ul li img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.15s;
+}
+.side1 a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.671);
+}
+.side1 a:hover {
+    padding: 3px;
+    color: white;
+    transition: all 0.1s;
+}
 
 .side1 ul li {
     list-style-type: none;
@@ -81,6 +96,7 @@ body {
     padding: 7px 10px;
     /* font-size: 14px; */
 }
+
 .songs ul li {
     font-size: 32px;
     display: flex;
@@ -91,26 +107,33 @@ body {
     border: 1px solid var(--bg_color);
     border-radius: 7px;
 }
-.songs ul li:hover{
+
+.songs ul li:hover {
     cursor: pointer;
-    background-color: var(--bg_color);
+    scale: 1.05;
+    /* background-color: var(--bg_color); */
+    background-color: var(--volume_track_color);
+    transition: all 0.2s;
 
 }
 
 .songs ul:hover {
     overflow-y: auto;
 }
-.songInfo{
+
+.songInfo {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 2px;
 }
-.songInfo div:first-child{
-    font-size: 16px;
+
+.songInfo div:first-child {
+    font-size: 14px;
 }
-.songInfo div:last-child{
-    font-size: 13px;
+
+.songInfo div:last-child {
+    font-size: 12px;
 }
 
 .side2 img {
@@ -122,6 +145,7 @@ body {
     display: flex;
     font-size: 20px;
     align-items: center;
+    cursor: default;
 }
 
 footer {
@@ -186,7 +210,11 @@ nav {
 
 .signup_and_login a {
     text-decoration: none;
-    color: white;
+    /* color: white; */
+    color: white;    
+}
+.signup_and_login a:hover{
+    color: rgba(255, 255, 255, 0.671);
 }
 
 .signup_and_login span:nth-child(2) a {
@@ -195,6 +223,9 @@ nav {
     padding: 10px 25px;
     font-weight: 500;
     border-radius: 50px;
+}
+.signup_and_login span:nth-child(2) a:hover{
+    background-color: rgba(255, 255, 255, 0.671);    
 }
 
 .playlists {
@@ -215,6 +246,7 @@ nav {
     text-transform: capitalize;
     margin: 18px 12px;
     font-size: 28px;
+    cursor: default;
 }
 
 .playlist_folders {
@@ -252,6 +284,9 @@ nav {
     border-radius: 3px;
     background-color: var(--bg_color);
     cursor: pointer;
+    transform: translateY(-10px);
+    /* scale: 1.1; */
+    transition: all 0.2s;
 }
 
 .tracker {
@@ -319,16 +354,20 @@ nav {
     /* justify-content: center; */
     align-items: center;
     height: 2px;
-    width: 80%;
+    width: 85%;
     background-color: white;
     cursor: pointer;
+    /* border-top: 3px solid var(--inside_color);
+    border-bottom: 3px solid var(--inside_color); */
+    padding: 2px 0; 
+    border-radius: 50px;
 }
 
 .tracker_ball {
     position: relative;
     left: 0%;
-    height: 10px;
-    width: 10px;
+    height: 13px;
+    width: 13px;
     background-color: white;
     border-radius: 50%;
     transition: left 0.5s;
@@ -340,6 +379,9 @@ nav {
     justify-content: center;
     align-items: center;
 }
+.controls .fa-volume-high{
+    cursor: pointer;
+}
 
 .controls span {
     display: flex;
@@ -349,10 +391,11 @@ nav {
 }
 
 .controls input[type="range"] {
-    /* -webkit-appearance: none; */
+    -webkit-appearance: none;
     background-color: var(--volume_track_color);
     height: 5px;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .controls input[type="range"]::-webkit-slider-thumb {
