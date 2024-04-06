@@ -1,20 +1,27 @@
 console.log('wassup nigga');
 
+const refreshPage = document.getElementById("logo");
+refreshPage.addEventListener("click", function () {
+    window.location.reload();
+});
+
+
 
 async function getSongs() {
-    let a = await fetch("http://127.0.0.1:3000/songs/");
+    // let a = await fetch("http://127.0.0.1:3000/songs/");
+    let a = await fetch("/songs/")
     let response = await a.text();
 
-    let div = document.createElement("div")
-    div.innerHTML = response
-    let as = div.getElementsByTagName("a")
+    let div = document.createElement("div");
+    div.innerHTML = response;
+    let as = div.getElementsByTagName("a");
 
-    let songs = []
+    let songs = [];
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
 
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split("/songs/")[1])
+            songs.push(element.href.split("/songs/")[1]);
         }
 
     }
@@ -23,9 +30,9 @@ async function getSongs() {
 
 }
 
-const playMusic = (songs)=>{
+const playMusic = (songs) => {
     var audio = new Audio("/songs/" + songs);
-    audio.play(); 
+    audio.play();
 }
 
 async function main() {
@@ -59,25 +66,25 @@ async function main() {
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
     // audio.addEventListener("loadeddata", () => {
     //     let duration = audio.duration;
-        // let volume = audio.volume;
-        // let src = audio.src;
-        // let currentTime = audio.currentTime;
-        // console.log(duration)
-        // console.log(src)
-        // console.log(volume)
-        // console.log(currentTime)
+    // let volume = audio.volume;
+    // let src = audio.src;
+    // let currentTime = audio.currentTime;
+    // console.log(duration)
+    // console.log(src)
+    // console.log(volume)
+    // console.log(currentTime)
     // });
 
     // lets attach an event listener to each of my song 
     let mySongsArray = document.querySelector(".songs").getElementsByTagName("li");
     Array.from(mySongsArray).forEach(e => {
-        e.addEventListener("click", element=>{
+        e.addEventListener("click", element => {
             console.log(e.querySelector(".songInfo").firstElementChild.innerHTML);
             playMusic(e.querySelector(".songInfo").firstElementChild.innerHTML)
         })
     });
 
-    
+
 }
 
 main()
