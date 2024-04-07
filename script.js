@@ -1,11 +1,25 @@
 console.log('wassup nigga');
 
+
 const refreshPage = document.getElementById("logo");
 refreshPage.addEventListener("click", function () {
     window.location.reload();
 });
 
+let currSong = new Audio();
 
+function secondsToMinutes(seconds) {
+    // Calculate minutes and seconds
+    var minutes = Math.floor(seconds / 60);
+    var remainingSeconds = Math.floor(seconds % 60);
+
+    // Add leading zeros if necessary
+    var minutesString = (minutes < 10 ? '0' : '') + minutes;
+    var secondsString = (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+
+    // Return formatted time
+    return minutesString + ':' + secondsString;
+}
 
 async function getSongs() {
     // let a = await fetch("http://127.0.0.1:3000/songs/");
@@ -29,19 +43,27 @@ async function getSongs() {
     return (songs);
 
 }
-
-const playMusic = (songs) => {
-    var audio = new Audio("/songs/" + songs);
-    audio.play();
+const pausedButton = document.getElementById("play_n_pause");
+const playMusic = (songs, pause = true) => {
+    currSong.src = "/songs/" + songs;
+    if (pause) {
+        currSong.play();
+        pausedButton.classList.remove("fa-play");
+        pausedButton.classList.add("fa-pause");
+    }
+    // for dynamically updating the song and artist
+    document.querySelector(".song_box > span:first-child").innerHTML = decodeURI(songs);
+    document.querySelector(".song_box > span:last-child").innerHTML = "wespy";
+    //     var audio = new Audio("/songs/" + songs);
+    //     audio.play();
 }
 
 async function main() {
 
-    let currSong;
-
     // to get the list of all songs
     let songs = await getSongs();
-    console.log(songs);
+    // console.log(songs);
+    playMusic(songs[0], false);
 
     // lets display our songs here 
     let songsUl = document.querySelector(".songs").getElementsByTagName("ul")[0]
@@ -85,6 +107,63 @@ async function main() {
     });
 
 
+    // event listerner for the player buttons
+    const playButton = document.getElementById("play_n_pause");
+
+    playButton.addEventListener("click", () => {
+        if (currSong.paused) {
+            currSong.play();
+            playButton.classList.remove("fa-play");
+            playButton.classList.add("fa-pause");
+        } else {
+            currSong.pause();
+            playButton.classList.remove("fa-pause");
+            playButton.classList.add("fa-play");
+        }
+    });
+
+    // fellas lets update the the song time now
+
+    function secondsToMinutes(seconds) {
+        // Calculate minutes and seconds
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = Math.floor(seconds % 60);
+
+        // Add leading zeros if necessary
+        var minutesString = (minutes < 10 ? '0' : '') + minutes;
+        var secondsString = (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+
+        // Return formatted time
+        return minutesString + ':' + secondsString;
+    }
+
+
+    currSong.addEventListener("timeupdate", () => {
+        // console.log(currSong.currentTime, currSong.duration);
+        document.querySelector(".track_and_ball > span:first-child").innerHTML = `${secondsToMinutes(currSong.currentTime)}`;
+        document.querySelector(".track_and_ball > span:last-child").innerHTML = `${secondsToMinutes(currSong.duration)}`;
+        document.querySelector(".tracker_ball").style.left = (currSong.currentTime / currSong.duration) * 99 + "%";
+
+
+
+    })
+    // tracker path banaya jaye taaki click krte hi  gaana aage badh jaye  
+    document.querySelector(".tracker_path").addEventListener("click", e => {
+        let percent = (e.offsetX/e.target.getBoundingClientRect().width) * 99;
+    document.querySelector(".tracker_ball").style.left = percent + "%";
+    currSong.currentTime = ((currSong.duration) * percent) / 99;
+    });
+
+    // hambugirrr se side menu nikala jaye
+    document.querySelector(".fa-bars").addEventListener("click", e=>{
+        document.querySelector(".side_menu").style.left = "0%";
+    })
+    
+    // hambugirrr se side menu wapas bheja jaye
+    document.querySelector(".fa-xmark").addEventListener("click", e=>{
+        document.querySelector(".side_menu").style.left = "-100%";
+    })
+    
 }
 
 main()
