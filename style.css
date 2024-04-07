@@ -21,6 +21,7 @@
     --inside_color: rgb(32, 32, 32);
     --volume_track_color: rgb(104, 104, 104);
     --spotify_green: #1ed760;
+    --opacity: 0;
 }
 
 body {
@@ -271,6 +272,17 @@ nav {
     display: flex;
     border-radius: 15px;
 }
+.playButton{
+    background-color: var(--spotify_green);
+    color: black;
+    display: inline;
+    padding: 10px 16px;
+    border-radius: 66px;
+    position: relative;
+    top: -55px;
+    right: -130px;
+    opacity: var(--opacity);
+}
 
 .playlist_box {
     width: 188px;
@@ -296,6 +308,7 @@ nav {
     transform: translateY(-10px);
     /* scale: 1.1; */
     transition: all 0.2s;
+    --opacity: 1;
 }
 
 .tracker {
