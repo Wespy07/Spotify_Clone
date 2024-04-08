@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    transition: all 0.5s;
 }
 
 ::-webkit-scrollbar {
@@ -64,7 +65,7 @@ body {
 
 .side1 ul li img:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.15);
     transition: all 0.15s;
 }
 
@@ -267,7 +268,8 @@ nav {
 
 .playlist_box img {
     padding: 7px 0;
-    max-width: 176px;
+    width: 176px;
+    height: 176px;
     margin: auto;
     display: flex;
     border-radius: 15px;
@@ -442,7 +444,7 @@ nav {
 
 @media screen and (max-width: 985px) {
     .playlist_folders {
-        justify-content: space-evenly;
+        justify-content: start;
     }
 
     .side_menu {

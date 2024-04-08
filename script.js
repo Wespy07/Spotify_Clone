@@ -1,4 +1,4 @@
-console.log('wassup nigga');
+console.log('potify!');
 
 
 const refreshPage = document.getElementById("logo");
@@ -51,7 +51,7 @@ async function getSongs(folder) {
             <i class="fa-solid fa-music"></i>
             <div class="songInfo">
                 <div>${song.replaceAll("%20", " ")}</div>
-                <div>wespy</div>
+                <div>${song.replaceAll("%20", " ").split(" - ")[0]}</div>
             </div>
         </li>`;
     }
@@ -129,9 +129,8 @@ async function displayPlaylistFolders() {
     // playlist must be loaded of the respective folder
     Array.from(document.getElementsByClassName("playlist_box")).forEach(e => {
         e.addEventListener("click", async element => {
-            console.log(element.currentTarget.dataset);
+            // console.log(element.currentTarget.dataset);
             songs = await getSongs(`songs/${element.currentTarget.dataset.folder}`);
-
         })
     })
 
@@ -139,8 +138,8 @@ async function displayPlaylistFolders() {
 
 async function main() {
 
-    // to get the list of all songs
-    await getSongs("songs/others");
+    // to get the list of all songs and auto populate the one by default mentioned below
+    await getSongs("songs/2_chill");
     // console.log(songs);
     playMusic(songs[0], false);
 
@@ -215,18 +214,18 @@ async function main() {
             alert("This is already the first song");
         }
     });
-    
+
     document.getElementById("next").addEventListener("click", () => {
         console.log('next clicked');
         let index = songs.indexOf(currSong.src.split("/").slice(-1)[0]);
-        console.log(songs, index);
+        console.log(index);
         if (index < songs.length - 1) {
             playMusic(songs[index + 1]);
         } else {
             alert("This is already the last song");
         }
     });
-    
+
     // document.getElementById("previous").addEventListener("click", () => {
     //     console.log('previous clicked');
     //     let index = songs.indexOf(currSong.src.split("/").slice(-1)[0])
@@ -240,7 +239,7 @@ async function main() {
 
 
     // })
-    
+
     // document.getElementById("next").addEventListener("click", () => {
     //     console.log('next clicked');
     //     let index = songs.indexOf(currSong.src.split("/").slice(-1)[0])
@@ -301,9 +300,8 @@ async function main() {
 
     volumeControl.addEventListener("input", () => {
         currSong.volume = volumeControl.value / 100;
-        updateVolume(); 
+        updateVolume();
     });
-
 
 
 
