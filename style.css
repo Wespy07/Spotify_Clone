@@ -414,10 +414,9 @@ nav {
     align-items: center;
 }
 
-.controls .fa-volume-high {
+.controls .fa-volume-high, .fa-volume-xmark{
     cursor: pointer;
 }
-
 .controls span {
     display: flex;
     justify-content: center;

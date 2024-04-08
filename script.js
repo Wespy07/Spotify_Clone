@@ -84,7 +84,7 @@ async function getSongs(folder) {
             playMusic(e.querySelector(".songInfo").firstElementChild.innerHTML)
         })
     });
-
+    return songs;
 }
 const pausedButton = document.getElementById("play_n_pause");
 const playMusic = (songs, pause = true) => {
@@ -131,6 +131,7 @@ async function displayPlaylistFolders() {
         e.addEventListener("click", async element => {
             // console.log(element.currentTarget.dataset);
             songs = await getSongs(`songs/${element.currentTarget.dataset.folder}`);
+            playMusic(songs[0])
         })
     })
 
