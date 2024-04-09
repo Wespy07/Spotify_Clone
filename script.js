@@ -38,7 +38,7 @@ async function getSongs(folder) {
         const element = as[index];
 
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split(`/${folder}/`)[1]);
+            songs.push(element.href.split(`songs/${folder}/`)[1]);
         }
 
     }
