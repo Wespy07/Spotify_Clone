@@ -26,7 +26,7 @@ function secondsToMinutes(seconds) {
 async function getSongs(folder) {
     currentFolder = folder;
     // let a = await fetch("http://127.0.0.1:3000/songs/");
-    let a = await fetch(`/${folder}/`)
+    let a = await fetch(`songs/${folder}/`)
     let response = await a.text();
 
     let div = document.createElement("div");
